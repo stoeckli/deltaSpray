@@ -120,7 +120,7 @@
 	#define MSG_BROWNOUT_RESET " Brown out Reset"
 	#define MSG_WATCHDOG_RESET " Watchdog Reset"
 	#define MSG_SOFTWARE_RESET " Software Reset"
-	#define MSG_MARLIN "Marlin "
+	#define MSG_MARLIN "deltaSpray "
 	#define MSG_AUTHOR " | Author: "
 	#define MSG_CONFIGURATION_VER " Last Updated: "
 	#define MSG_FREE_MEMORY " Free Memory: "
