@@ -1,4 +1,4 @@
-iMatrixSpray Firmware
+iMatrixSpray Delta Firmware
 ==========
 This is the firmware for the iMatrixSpray stepper motor control board. It runs on a Arduino Mega 2560 board with a RAMP shield.
 
