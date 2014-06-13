@@ -678,6 +678,78 @@ void st_init()
   #endif
 
 
+  //endstops and pullups
+
+  #if defined(X_MIN_PIN) && X_MIN_PIN > -1
+    SET_INPUT(X_MIN_PIN);
+    #ifdef ENDSTOPPULLUP_XMIN
+      WRITE(X_MIN_PIN,HIGH);
+    #endif
+  #endif
+
+  #if defined(Y_MIN_PIN) && Y_MIN_PIN > -1
+    SET_INPUT(Y_MIN_PIN);
+    #ifdef ENDSTOPPULLUP_YMIN
+      WRITE(Y_MIN_PIN,HIGH);
+    #endif
+  #endif
+
+  #if defined(Z_MIN_PIN) && Z_MIN_PIN > -1
+    SET_INPUT(Z_MIN_PIN);
+    #ifdef ENDSTOPPULLUP_ZMIN
+      WRITE(Z_MIN_PIN,HIGH);
+    #endif
+  #endif
+
+  #if defined(P_MIN_PIN) && P_MIN_PIN > -1
+    SET_INPUT(P_MIN_PIN);
+    #ifdef ENDSTOPPULLUP_PMIN
+      WRITE(P_MIN_PIN,HIGH);
+    #endif
+  #endif
+
+  #if defined(V_MIN_PIN) && V_MIN_PIN > -1
+    SET_INPUT(V_MIN_PIN);
+    #ifdef ENDSTOPPULLUP_VMIN
+      WRITE(V_MIN_PIN,HIGH);
+    #endif
+  #endif
+
+  #if defined(X_MAX_PIN) && X_MAX_PIN > -1
+    SET_INPUT(X_MAX_PIN);
+    #ifdef ENDSTOPPULLUP_XMAX
+      WRITE(X_MAX_PIN,HIGH);
+    #endif
+  #endif
+
+  #if defined(Y_MAX_PIN) && Y_MAX_PIN > -1
+    SET_INPUT(Y_MAX_PIN);
+    #ifdef ENDSTOPPULLUP_YMAX
+      WRITE(Y_MAX_PIN,HIGH);
+    #endif
+  #endif
+
+  #if defined(Z_MAX_PIN) && Z_MAX_PIN > -1
+    SET_INPUT(Z_MAX_PIN);
+    #ifdef ENDSTOPPULLUP_ZMAX
+      WRITE(Z_MAX_PIN,HIGH);
+    #endif
+  #endif
+
+  #if defined(P_MAX_PIN) && P_MAX_PIN > -1
+    SET_INPUT(P_MAX_PIN);
+    #ifdef ENDSTOPPULLUP_PMAX
+      WRITE(P_MAX_PIN,HIGH);
+    #endif
+  #endif
+
+  #if defined(V_MAX_PIN) && V_MAX_PIN > -1
+    SET_INPUT(V_MAX_PIN);
+    #ifdef ENDSTOPPULLUP_VMAX
+      WRITE(V_MAX_PIN,HIGH);
+    #endif
+  #endif
+
 
   //Initialize Step Pins
   #if (X_STEP_PIN > -1) 
