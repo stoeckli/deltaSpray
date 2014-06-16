@@ -65,9 +65,9 @@
 // actuator arm lengthhome curr pos:
 #define DELTA_ARM_LENGTH 71.25
 //distance from the end effector to the rotating shafts at the home position
-#define DELTA_HOME_POS 120.3
-//distance from the end effector to the rotating shafts at the home position
-#define DELTA_HOME_ANGLE 30 
+#define DELTA_HOME_POS 121.44
+//angle at home position 
+#define DELTA_HOME_ANGLE 11
 // number of teeth on the worm and wheel
 #define WHEEL_TEETH 200*16/360.0
 
@@ -299,7 +299,7 @@ const bool V_ENDSTOPS_INVERTING = false; // set to true to invert the logic of t
 #define Y_MIN_POS -1600
 #define Z_MAX_POS 1600
 #define Z_MIN_POS -1600
-#define P_MAX_POS 90
+#define P_MAX_POS 70
 #define P_MIN_POS 0
 #define V_MAX_POS 5
 #define V_MIN_POS 0
@@ -316,14 +316,14 @@ const bool V_ENDSTOPS_INVERTING = false; // set to true to invert the logic of t
 
 // Manual homing switch locations:
 // For deltabots this means top and center of the cartesian print volume.
-#define MANUAL_X_HOME_POS 30*16/360*200
-#define MANUAL_Y_HOME_POS 30*16/360*200
-#define MANUAL_Z_HOME_POS 30*16/360*200  // Distance between nozzle and print surface after homing.
-#define MANUAL_X_HOME_DELTA 30
-#define MANUAL_Y_HOME_DELTA 30
-#define MANUAL_Z_HOME_DELTA 30
+#define MANUAL_X_HOME_POS 110 //DELTA_HOME_ANGLE*WHEEL_TEETH
+#define MANUAL_Y_HOME_POS 110 //DELTA_HOME_ANGLE*WHEEL_TEETH
+#define MANUAL_Z_HOME_POS 110 //DELTA_HOME_ANGLE*WHEEL_TEETH  // Distance between nozzle and print surface after homing.
+//#define MANUAL_X_HOME_DELTA 0//DELTA_HOME_ANGLE
+//#define MANUAL_Y_HOME_DELTA 0//DELTA_HOME_ANGLE
+//#define MANUAL_Z_HOME_DELTA 0//DELTA_HOME_ANGLE
 #define MANUAL_P_HOME_POS 0
-#define MANUAL_V_HOME_POS 1.45
+#define MANUAL_V_HOME_POS 0.25
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 5 // The axis order in all axis related arrays is X, Y, Z, P, V
@@ -331,9 +331,9 @@ const bool V_ENDSTOPS_INVERTING = false; // set to true to invert the logic of t
 
 // default settings 
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {1, 1, 1, 2800, 2667}
-#define DEFAULT_MAX_FEEDRATE          {32000, 32000, 32000, 3, 3}  // (mm/sec)
-#define DEFAULT_MAX_ACCELERATION      {3000, 3000, 3000, 6000, 6000}    // X, Y, Z, E maximum start speed for accelerated moves.
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {1, 1, 1, 1600, 533}
+#define DEFAULT_MAX_FEEDRATE          {32000, 32000, 32000, 4, 3}  // (mm/sec)
+#define DEFAULT_MAX_ACCELERATION      {3000, 3000, 3000, 3000, 500}    // X, Y, P, V maximum start speed for accelerated moves.
 
 #define DEFAULT_ACCELERATION          6000 // X, Y, Z and E max acceleration in mm/s^2 for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  9000   // X, Y, Z and E max acceleration in mm/s^2 for r retracts
