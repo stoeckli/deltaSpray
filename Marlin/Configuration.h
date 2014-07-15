@@ -259,7 +259,7 @@ const bool X_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 const bool Y_ENDSTOPS_INVERTING = true; // set to true to invert the logic of the endstops.
 const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of the endstops.
 const bool P_ENDSTOPS_INVERTING = true; // set to true to invert the logic of the endstops.
-const bool V_ENDSTOPS_INVERTING = false; // set to true to invert the logic of the endstops.
+const bool V_ENDSTOPS_INVERTING = true; // set to true to invert the logic of the endstops.
 //#define DISABLE_MAX_ENDSTOPS
 
 // For Inverting Stepper Enable Pins (Active Low) use 0, Non Inverting (Active High) use 1
@@ -323,7 +323,7 @@ const bool V_ENDSTOPS_INVERTING = false; // set to true to invert the logic of t
 //#define MANUAL_Y_HOME_DELTA 0//DELTA_HOME_ANGLE
 //#define MANUAL_Z_HOME_DELTA 0//DELTA_HOME_ANGLE
 #define MANUAL_P_HOME_POS 0
-#define MANUAL_V_HOME_POS 0.25
+#define MANUAL_V_HOME_POS 2.4 //4.25
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 5 // The axis order in all axis related arrays is X, Y, Z, P, V
