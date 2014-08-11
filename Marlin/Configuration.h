@@ -301,7 +301,7 @@ const bool V_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 #define Z_MIN_POS -1600
 #define P_MAX_POS 70
 #define P_MIN_POS 0
-#define V_MAX_POS 5
+#define V_MAX_POS 6
 #define V_MIN_POS 0
 
 #define X_MAX_LENGTH (X_MAX_POS - X_MIN_POS)
