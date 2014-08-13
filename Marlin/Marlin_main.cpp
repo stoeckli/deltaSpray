@@ -1991,9 +1991,9 @@ void manage_inactivity()
     if( (millis() - previous_millis_cmd) >  stepper_inactive_time ) 
     {
       if(blocks_queued() == false) {
-        //disable_x();
-        //disable_y();
-        //disable_z();
+        disable_x();
+        disable_y();
+        disable_z();
         disable_p();
         disable_v();
       }

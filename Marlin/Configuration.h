@@ -323,7 +323,7 @@ const bool V_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 //#define MANUAL_Y_HOME_DELTA 0//DELTA_HOME_ANGLE
 //#define MANUAL_Z_HOME_DELTA 0//DELTA_HOME_ANGLE
 #define MANUAL_P_HOME_POS 0
-#define MANUAL_V_HOME_POS 2.4 //4.25
+#define MANUAL_V_HOME_POS 4.4 //4.25 //2.4 on V2
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 5 // The axis order in all axis related arrays is X, Y, Z, P, V
