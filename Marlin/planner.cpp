@@ -167,6 +167,8 @@ void calculate_trapezoid_for_block(block_t *block, float entry_factor, float exi
   unsigned long initial_rate = ceil(block->nominal_rate*entry_factor); // (step/min)
   unsigned long final_rate = ceil(block->nominal_rate*exit_factor); // (step/min)
 
+  SERIAL_ECHOPAIR("Initial: ", initial_rate);
+
   // Limit minimal step rate (Otherwise the timer will overflow.)
   if(initial_rate <120) {
     initial_rate=120; 
@@ -591,9 +593,9 @@ void plan_buffer_line(const float &x, const float &y, const float &z, const floa
   block->nominal_speed = block->millimeters * inverse_second; // (mm/sec) Always > 0
   block->nominal_rate = ceil(block->step_event_count * inverse_second); // (step/sec) Always > 0
   
-  /* MStSERIAL_ECHOPAIR("Mil: ",block->millimeters);
+  /*SERIAL_ECHOPAIR("Mil: ",block->millimeters);
   SERIAL_ECHOPAIR("Speed: ",block->nominal_speed);
-  SERIAL_ECHOPAIR("Rate: ",block->nominal_rate); */
+  SERIAL_ECHOPAIR("Rate: ",block->nominal_rate);*/
 
 
   // Calculate and limit speed in mm/sec for each axis
@@ -620,12 +622,12 @@ void plan_buffer_line(const float &x, const float &y, const float &z, const floa
 
   // Compute and limit the acceleration rate for the trapezoid generator.  
   float steps_per_mm = block->step_event_count/block->millimeters;
-  if(block->steps_x == 0 && block->steps_y == 0 && block->steps_z == 0 && block->steps_p == 0 && block->steps_v == 0)
+  /*if(block->steps_x == 0 && block->steps_y == 0 && block->steps_z == 0 && block->steps_p == 0 && block->steps_v == 0)
   {
 	  block->acceleration_st = ceil(retract_acceleration * steps_per_mm); // convert to: acceleration steps/sec^2
   }
   else
-  {
+  {*/
     block->acceleration_st = ceil(acceleration * steps_per_mm); // convert to: acceleration steps/sec^2
     // Limit acceleration per axis
     if(((float)block->acceleration_st * (float)block->steps_x / (float)block->step_event_count) > axis_steps_per_sqr_second[X_AXIS])
@@ -637,14 +639,17 @@ void plan_buffer_line(const float &x, const float &y, const float &z, const floa
     if(((float)block->acceleration_st * (float)block->steps_p / (float)block->step_event_count) > axis_steps_per_sqr_second[P_AXIS])
       block->acceleration_st = axis_steps_per_sqr_second[P_AXIS];
     if(((float)block->acceleration_st * (float)block->steps_v / (float)block->step_event_count) > axis_steps_per_sqr_second[V_AXIS])
-      block->acceleration_st = axis_steps_per_sqr_second[V_AXIS];
+		inverse_second = axis_steps_per_sqr_second[V_AXIS];
 
-  }
+  //}
+
   block->acceleration = block->acceleration_st / steps_per_mm;
   block->acceleration_rate = (long)((float)block->acceleration_st * 8.388608);
 
   // Start with a safe speed
-  float vmax_junction = max_xyz_jerk/2; 
+  float vmax_junction = max_xyz_jerk/2;
+
+
   float vmax_junction_factor = 1.0; 
   if(fabs(current_speed[P_AXIS]) > max_p_jerk/2) 
     vmax_junction = min(vmax_junction, max_p_jerk/2);
@@ -679,6 +684,8 @@ void plan_buffer_line(const float &x, const float &y, const float &z, const floa
   double v_allowable = max_allowable_speed(-block->acceleration,MINIMUM_PLANNER_SPEED,block->millimeters);
   block->entry_speed = min(vmax_junction, v_allowable);
 
+
+
   // Initialize planner efficiency flags
   // Set flag if block will always reach maximum junction speed regardless of entry/exit speeds.
   // If a block can de/ac-celerate from nominal speed to zero within the length of the block, then
@@ -699,6 +706,10 @@ void plan_buffer_line(const float &x, const float &y, const float &z, const floa
   memcpy(previous_speed, current_speed, sizeof(previous_speed)); // previous_speed[] = current_speed[]
   previous_nominal_speed = block->nominal_speed;
 
+  SERIAL_ECHOPAIR("Entry: ", block->entry_speed / block->nominal_speed);
+  SERIAL_ECHOPAIR("Safe: ", safe_speed / block->nominal_speed);
+  SERIAL_ECHOPAIR("Junction: ", vmax_junction);
+  SERIAL_ECHOPAIR("Acc: ", block->acceleration);
 
   calculate_trapezoid_for_block(block, block->entry_speed/block->nominal_speed,
   safe_speed/block->nominal_speed);
