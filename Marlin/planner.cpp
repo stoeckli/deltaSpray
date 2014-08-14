@@ -639,7 +639,7 @@ void plan_buffer_line(const float &x, const float &y, const float &z, const floa
     if(((float)block->acceleration_st * (float)block->steps_p / (float)block->step_event_count) > axis_steps_per_sqr_second[P_AXIS])
       block->acceleration_st = axis_steps_per_sqr_second[P_AXIS];
     if(((float)block->acceleration_st * (float)block->steps_v / (float)block->step_event_count) > axis_steps_per_sqr_second[V_AXIS])
-		inverse_second = axis_steps_per_sqr_second[V_AXIS];
+	  block->acceleration_st = axis_steps_per_sqr_second[V_AXIS];
 
   //}
 
@@ -706,10 +706,10 @@ void plan_buffer_line(const float &x, const float &y, const float &z, const floa
   memcpy(previous_speed, current_speed, sizeof(previous_speed)); // previous_speed[] = current_speed[]
   previous_nominal_speed = block->nominal_speed;
 
-  SERIAL_ECHOPAIR("Entry: ", block->entry_speed / block->nominal_speed);
+  /*SERIAL_ECHOPAIR("Entry: ", block->entry_speed / block->nominal_speed);
   SERIAL_ECHOPAIR("Safe: ", safe_speed / block->nominal_speed);
   SERIAL_ECHOPAIR("Junction: ", vmax_junction);
-  SERIAL_ECHOPAIR("Acc: ", block->acceleration);
+  SERIAL_ECHOPAIR("Acc: ", block->acceleration);*/
 
   calculate_trapezoid_for_block(block, block->entry_speed/block->nominal_speed,
   safe_speed/block->nominal_speed);
