@@ -167,7 +167,7 @@ void calculate_trapezoid_for_block(block_t *block, float entry_factor, float exi
   unsigned long initial_rate = ceil(block->nominal_rate*entry_factor); // (step/min)
   unsigned long final_rate = ceil(block->nominal_rate*exit_factor); // (step/min)
 
-  SERIAL_ECHOPAIR("Initial: ", initial_rate);
+  /*SERIAL_ECHOPAIR("Initial: ", initial_rate);*/
 
   // Limit minimal step rate (Otherwise the timer will overflow.)
   if(initial_rate <120) {
