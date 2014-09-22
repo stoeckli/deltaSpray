@@ -1265,25 +1265,28 @@
 
 #define X_STEP_PIN 37
 #define X_DIR_PIN 48
-#define X_MIN_PIN 12
-#define X_MAX_PIN 24
-#define X_enable_pIN 29
+//#define X_MIN_PIN 12
+//#define X_MAX_PIN 24
+#define X_STOP_PIN 12 //X-min
+#define X_ENABLE_PIN 29
 #define X_MS1_PIN 40
 #define X_MS2_PIN 41
 
 #define Y_STEP_PIN 36
 #define Y_DIR_PIN 49
-#define Y_MIN_PIN 11
-#define Y_MAX_PIN 23
-#define Y_enable_pIN 28
+//#define Y_MIN_PIN 11
+//#define Y_MAX_PIN 23
+#define Y_STOP_PIN 24 //X-max
+#define Y_ENABLE_PIN 28
 #define Y_MS1_PIN 69
 #define Y_MS2_PIN 39
 
 #define Z_STEP_PIN 35
 #define Z_DIR_PIN 47
-#define Z_MIN_PIN 10
-#define Z_MAX_PIN 30
-#define Z_enable_pIN 27
+//#define Z_MIN_PIN 10
+//#define Z_MAX_PIN 30
+#define Z_STOP_PIN 11 //Y-min
+#define Z_ENABLE_PIN 27
 #define Z_MS1_PIN 68
 #define Z_MS2_PIN 67
 
@@ -1301,15 +1304,17 @@
 
 #define P_STEP_PIN         34
 #define P_DIR_PIN          43
-#define P_enable_pIN       26
+#define P_ENABLE_PIN       26
 #define P_MS1_PIN 65
 #define P_MS2_PIN 66
+#define P_STOP_PIN 23 //Y-max
 
 #define V_STEP_PIN         33
 #define V_DIR_PIN          42
-#define V_enable_pIN       25
+#define V_ENABLE_PIN       25
 #define V_MS1_PIN 63
 #define V_MS2_PIN 64
+#define V_STOP_PIN 10 //Z-min
 
 #define DIGIPOTSS_PIN 38
 #define DIGIPOT_CHANNELS {4,5,3,0,1} // X Y Z P V digipot channels to stepper driver mapping
@@ -1318,6 +1323,7 @@
 #define SDSS               53
 #define LED_PIN            13
 #define FAN_PIN            8
+#define FAN2_PIN			2		
 #define PS_ON_PIN          4
 #define KILL_PIN           -1
 #define SUICIDE_PIN        -1  //PIN that has to be turned on right after start, to keep power flowing.

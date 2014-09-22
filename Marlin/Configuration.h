@@ -46,7 +46,7 @@
 // 301 = Rambo
 
 #ifndef MOTHERBOARD
-#define MOTHERBOARD 33
+#define MOTHERBOARD 301 // Rambo (301) instead or RAMPS (33)
 #endif
 
 //===========================================================================
@@ -278,9 +278,9 @@ const bool V_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 
 #define INVERT_X_DIR false    // for Mendel set to false, for Orca set to true
 #define INVERT_Y_DIR false    // for Mendel set to true, for Orca set to false
-#define INVERT_Z_DIR false    // for Mendel set to false, for Orca set to true
-#define INVERT_P_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
-#define INVERT_V_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
+#define INVERT_Z_DIR true    // for Mendel set to false, for Orca set to true
+#define INVERT_P_DIR true   // for direct drive extruder v9 set to true, for geared extruder set to false
+#define INVERT_V_DIR true   // for direct drive extruder v9 set to true, for geared extruder set to false
 
 // ENDSTOP SETTINGS:
 // Sets direction of endstops when homing; 1=MAX, -1=MIN

@@ -305,6 +305,16 @@ void setup_photpin()
   #endif 
 }
 
+void setup_fan2pin()
+{
+  #ifdef FAN2_PIN
+	#if (FAN2_PIN > -1)
+		SET_OUTPUT(FAN2_PIN);
+		WRITE(FAN2_PIN, HIGH);
+    #endif
+  #endif 
+}
+
 void setup_powerhold()
 {
  #ifdef SUICIDE_PIN
@@ -378,6 +388,7 @@ void setup()
   watchdog_init();
   st_init();    // Initialize stepper, this enables interrupts!
   setup_photpin();
+  setup_fan2pin(); //Enable Fan
   
   lcd_init();
 }

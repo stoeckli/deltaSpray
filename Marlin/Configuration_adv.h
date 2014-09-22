@@ -191,7 +191,7 @@
 #define MICROSTEP_MODES {16,16,16,16,16} // [1,2,4,8,16]
 
 // Motor Current setting (Only functional when motor driver current ref pins are connected to a digital trimpot on supported boards)
-#define DIGIPOT_MOTOR_CURRENT {135,135,135,135,135} // Values 0-255 (RAMBO 135 = ~0.75A, 185 = ~1A)
+#define DIGIPOT_MOTOR_CURRENT {135,135,135,135,185} // Values 0-255 (RAMBO 135 = ~0.75A, 185 = ~1A)
 
 
 //===========================================================================
@@ -200,7 +200,7 @@
 
 
 #define SD_FINISHED_STEPPERRELEASE true  //if sd support and the file is finished: disable steppers?
-#define SD_FINISHED_RELEASECOMMAND "M84 X Y Z E" // You might want to keep the z enabled so your bed stays in place.
+#define SD_FINISHED_RELEASECOMMAND "M84 X Y Z P V" // You might want to keep the z enabled so your bed stays in place.
 
 // The hardware watchdog should reset the Microcontroller disabling all outputs, in case the firmware gets stuck and doesn't do temperature regulation.
 //#define USE_WATCHDOG
