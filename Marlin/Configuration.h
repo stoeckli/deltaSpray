@@ -46,7 +46,7 @@
 // 301 = Rambo
 
 #ifndef MOTHERBOARD
-#define MOTHERBOARD 301 // Rambo (301) instead or RAMPS (33)
+#define MOTHERBOARD 33 // Rambo (301) instead or RAMPS (33)
 #endif
 
 //===========================================================================
@@ -276,11 +276,11 @@ const bool V_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 #define DISABLE_P false
 #define DISABLE_V false
 
-#define INVERT_X_DIR false    // for Mendel set to false, for Orca set to true
-#define INVERT_Y_DIR false    // for Mendel set to true, for Orca set to false
-#define INVERT_Z_DIR true    // for Mendel set to false, for Orca set to true
-#define INVERT_P_DIR true   // for direct drive extruder v9 set to true, for geared extruder set to false
-#define INVERT_V_DIR true   // for direct drive extruder v9 set to true, for geared extruder set to false
+#define INVERT_X_DIR false  // V2.1: 0 MSt
+#define INVERT_Y_DIR false  // V2.1: 0
+#define INVERT_Z_DIR true   // V2.1: 1
+#define INVERT_P_DIR true	// V2.1: 1
+#define INVERT_V_DIR true   // V2.1: 1
 
 // ENDSTOP SETTINGS:
 // Sets direction of endstops when homing; 1=MAX, -1=MIN
@@ -323,7 +323,7 @@ const bool V_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 //#define MANUAL_Y_HOME_DELTA 0//DELTA_HOME_ANGLE
 //#define MANUAL_Z_HOME_DELTA 0//DELTA_HOME_ANGLE
 #define MANUAL_P_HOME_POS 0
-#define MANUAL_V_HOME_POS 4.4 //4.25
+#define MANUAL_V_HOME_POS  1.6 //V2.1: 4.4 //4.25
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 5 // The axis order in all axis related arrays is X, Y, Z, P, V

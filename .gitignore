@@ -3,3 +3,10 @@ applet/
 *~
 *.orig
 *.rej
+*.log
+*.tlog
+*.idb
+*.vmps.xml
+*.xml
+*.pdb
+*.vcxproj

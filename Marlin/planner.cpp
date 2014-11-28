@@ -622,12 +622,12 @@ void plan_buffer_line(const float &x, const float &y, const float &z, const floa
 
   // Compute and limit the acceleration rate for the trapezoid generator.  
   float steps_per_mm = block->step_event_count/block->millimeters;
-  /*if(block->steps_x == 0 && block->steps_y == 0 && block->steps_z == 0 && block->steps_p == 0 && block->steps_v == 0)
+  if(block->steps_x == 0 && block->steps_y == 0 && block->steps_z == 0 && block->steps_p == 0 && block->steps_v == 0)
   {
 	  block->acceleration_st = ceil(retract_acceleration * steps_per_mm); // convert to: acceleration steps/sec^2
   }
   else
-  {*/
+  {
     block->acceleration_st = ceil(acceleration * steps_per_mm); // convert to: acceleration steps/sec^2
     // Limit acceleration per axis
     if(((float)block->acceleration_st * (float)block->steps_x / (float)block->step_event_count) > axis_steps_per_sqr_second[X_AXIS])
@@ -640,8 +640,7 @@ void plan_buffer_line(const float &x, const float &y, const float &z, const floa
       block->acceleration_st = axis_steps_per_sqr_second[P_AXIS];
     if(((float)block->acceleration_st * (float)block->steps_v / (float)block->step_event_count) > axis_steps_per_sqr_second[V_AXIS])
 	  block->acceleration_st = axis_steps_per_sqr_second[V_AXIS];
-
-  //}
+  }
 
   block->acceleration = block->acceleration_st / steps_per_mm;
   block->acceleration_rate = (long)((float)block->acceleration_st * 8.388608);
