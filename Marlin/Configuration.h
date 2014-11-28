@@ -333,7 +333,7 @@ const bool V_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 
 #define DEFAULT_AXIS_STEPS_PER_UNIT   {1, 1, 1, 1600, 533} //533 when microstepping
 #define DEFAULT_MAX_FEEDRATE          {32000, 32000, 32000, 4, 2}  // (mm/sec)
-#define DEFAULT_MAX_ACCELERATION      {3000, 3000, 3000, 3000, 0.2}    // X, Y, P, V maximum start speed for accelerated moves.
+#define DEFAULT_MAX_ACCELERATION      {3000, 3000, 3000, 3000, 6000}    // X, Y, P, V maximum start speed for accelerated moves.
 
 #define DEFAULT_ACCELERATION          6000 // X, Y, Z and E max acceleration in mm/s^2 for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  9000   // X, Y, Z and E max acceleration in mm/s^2 for r retracts
@@ -341,7 +341,7 @@ const bool V_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 // 
 #define DEFAULT_XYZJERK               320000.0   // (mm/sec)
 #define DEFAULT_PJERK                 200.0   // (um/sec)
-#define DEFAULT_VJERK                 1   // (mm/sec)
+#define DEFAULT_VJERK                 200   // (mm/sec)
 
 //===========================================================================
 //=============================Additional Features===========================
