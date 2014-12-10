@@ -46,7 +46,7 @@
 // 301 = Rambo
 
 #ifndef MOTHERBOARD
-#define MOTHERBOARD 33 // Rambo (301) instead or RAMPS (33)
+#define MOTHERBOARD 301 // Rambo (301) instead or RAMPS (33)
 #endif
 
 //===========================================================================
