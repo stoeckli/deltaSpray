@@ -288,7 +288,7 @@ const bool V_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 #define Y_HOME_DIR 1
 #define Z_HOME_DIR 1
 #define P_HOME_DIR -1
-#define V_HOME_DIR 1
+#define V_HOME_DIR -1
 
 #define min_software_endstops true //If true, axis won't move to coordinates less than *_MIN_POS.
 #define max_software_endstops true //If true, axis won't move to coordinates greater than *_MAX_POS.
@@ -302,7 +302,7 @@ const bool V_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 #define P_MAX_POS 70
 #define P_MIN_POS 0
 #define V_MAX_POS 6
-#define V_MIN_POS 0
+#define V_MIN_POS -0.5
 
 #define X_MAX_LENGTH (X_MAX_POS - X_MIN_POS)
 #define Y_MAX_LENGTH (Y_MAX_POS - Y_MIN_POS)
@@ -323,7 +323,7 @@ const bool V_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 //#define MANUAL_Y_HOME_DELTA 0//DELTA_HOME_ANGLE
 //#define MANUAL_Z_HOME_DELTA 0//DELTA_HOME_ANGLE
 #define MANUAL_P_HOME_POS 0
-#define MANUAL_V_HOME_POS  1.6 //V2.1: 4.4 //4.25
+#define MANUAL_V_HOME_POS 0.1 //V2.2: 0.1  //V2.2.0: 1.6 //V2.1: 4.4 //4.25
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 5 // The axis order in all axis related arrays is X, Y, Z, P, V

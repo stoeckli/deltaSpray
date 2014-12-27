@@ -68,8 +68,9 @@
 // M1   - Same as M0
 // M104 - Set extruder target temp
 // M105 - Read current temp
-// M106 - Fan on
+// M106 - Fan 0 on
 // M107 - Fan off
+// M108 - Fan 2, use with S
 // M109 - Wait for extruder current temp to reach target temp.
 // M114 - Display current position
 
@@ -631,7 +632,7 @@ XYZ_CONSTS_FROM_CONFIG(float, max_length,      MAX_LENGTH);
 XYZ_CONSTS_FROM_CONFIG(float, home_retract_mm, HOME_RETRACT_MM);
 XYZ_CONSTS_FROM_CONFIG(signed char, home_dir,  HOME_DIR);
 
-static void axis_is_at_home(int axis) {
+static void axis_is_at_home(int axis) {  
   current_position[axis] = base_home_pos(axis) + add_homeing[axis];
   min_pos[axis] =          base_min_pos(axis) + add_homeing[axis];
   max_pos[axis] =          base_max_pos(axis) + add_homeing[axis];
@@ -649,6 +650,9 @@ static void homeaxis(int axis) {
 	  axis==P_AXIS ? HOMEAXIS_DO(P) :
 	  axis==V_AXIS ? HOMEAXIS_DO(V) :
       0) {
+ 
+    enable_endstops(true);
+     
     current_position[axis] = 0;
     plan_set_position(current_position[X_AXIS], current_position[Y_AXIS], current_position[Z_AXIS], current_position[P_AXIS], current_position[V_AXIS]);
     destination[axis] = ax_length[axis] * home_dir(axis);
@@ -670,6 +674,9 @@ static void homeaxis(int axis) {
     axis_is_at_home(axis);
 	plan_set_position(current_position[X_AXIS], current_position[Y_AXIS], current_position[Z_AXIS], current_position[P_AXIS], current_position[V_AXIS]);
 
+    enable_endstops(false);
+    endstops_hit_on_purpose();
+
     destination[axis] = 0;//add_homeing[axis];
     feedrate = homing_feedrate[axis]/2 ; 
     plan_buffer_line(destination[X_AXIS], destination[Y_AXIS], destination[Z_AXIS], destination[P_AXIS], destination[V_AXIS], feedrate);
@@ -677,7 +684,6 @@ static void homeaxis(int axis) {
 
     destination[axis] = current_position[axis];
     feedrate = max_feedrate[axis];
-    endstops_hit_on_purpose();
   }
 }
 #define HOMEAXIS(LETTER) homeaxis(LETTER##_AXIS)
@@ -1220,6 +1226,29 @@ void process_commands()
         fanSpeed = 0;
         break;
     #endif //FAN_PIN
+    
+    #if FAN2_PIN > -1
+      case 108: //M106 Fan On
+        if (code_seen('S'))
+        {
+           if (constrain(code_value(),0,255) == 0)
+           {
+             WRITE(FAN2_PIN, LOW);
+           }
+           else
+           {
+             WRITE(FAN2_PIN, HIGH);
+           }
+        }
+        else
+        {
+             WRITE(FAN2_PIN, HIGH);
+        }
+
+        break;
+    #endif //FAN2_PIN
+    
+    
 
     #if (PS_ON_PIN > -1)
       case 80: // M80 - ATX Power On
