@@ -692,7 +692,8 @@ void process_commands()
 {
   unsigned long codenum; //throw away variable
   char *starpos = NULL;
-
+  const uint8_t digipot_motor_current[] = DIGIPOT_MOTOR_CURRENT;
+  
   if(code_seen('G'))
   {
     switch((int)code_value())
@@ -765,6 +766,8 @@ void process_commands()
       break;
       #endif //FWRETRACT
     case 28: //G28 Home all Axis one at a time
+      digipot_current(4, digipot_motor_current[5]);
+
       saved_feedrate = feedrate;
 
       previous_millis_cmd = millis();
@@ -893,6 +896,8 @@ void process_commands()
 
 
 
+      st_synchronize();
+      digipot_current(4, digipot_motor_current[4]);
 
 	  //MSt SERIAL_ECHOPAIR("Home Z: ",current_position[Z_AXIS]);
 
@@ -1601,8 +1606,17 @@ void process_commands()
     case 907: // M907 Set digital trimpot motor current using axis codes.
     {
       #if DIGIPOTSS_PIN > -1
-        for(int i=0;i<=NUM_AXIS;i++) if(code_seen(axis_codes[i])) digipot_current(i,code_value());
-        if(code_seen('B')) digipot_current(4,code_value());
+        for(int i=0;i<NUM_AXIS;i++)
+       {
+         if(code_seen(axis_codes[i]))
+         {
+           digipot_current(i,code_value());
+           	SERIAL_ECHO(i);
+		SERIAL_ECHO("/");
+		SERIAL_ECHOLN(code_value());
+         }
+       }
+       if(code_seen('B')) digipot_current(4,code_value());
         if(code_seen('S')) for(int i=0;i<=4;i++) digipot_current(i,code_value());
       #endif
     }
@@ -1825,7 +1839,8 @@ void prepare_move()
                             sq(difference[Y_AXIS]) +
                             sq(difference[Z_AXIS]));
   int xyz_move = true;
-
+  int v_move = false;
+  const uint8_t digipot_motor_current[] = DIGIPOT_MOTOR_CURRENT;
 
   /*SERIAL_ECHO("C: ");
 		SERIAL_ECHO(current_position[X_AXIS]);
@@ -1869,11 +1884,15 @@ SERIAL_ECHO("d: ");
 	  {
 		  cartesian_mm = abs(difference[P_AXIS]);
 		  xyz_move = false;
+                  // don't allow V moves on P moves  
+                  difference[V_AXIS] = 0;
+                  destination[V_AXIS] = current_position[V_AXIS];
 	  }
 	  else if(abs(difference[V_AXIS]) > 0.001)
 	  {
 		  cartesian_mm = abs(difference[V_AXIS]);
 		  xyz_move = false;
+                  v_move = true;
 	  }
 
 	  else
@@ -1882,6 +1901,12 @@ SERIAL_ECHO("d: ");
 	  }
 
 	  float seconds = cartesian_mm / feedrate;
+  }
+  else
+  {
+    // don't allow V moves on xyz  
+    difference[V_AXIS] = 0;
+    destination[V_AXIS] = current_position[V_AXIS];
   }
 /*  else
   {
@@ -1952,7 +1977,18 @@ SERIAL_ECHO("d: ");
   }
   else
   {
-	  plan_buffer_line(delta[X_AXIS], delta[Y_AXIS], delta[Z_AXIS], destination[P_AXIS], destination[V_AXIS], feedrate);
+	  if (v_move)
+            {
+              digipot_current(4, digipot_motor_current[5]);
+              plan_buffer_line(delta[X_AXIS], delta[Y_AXIS], delta[Z_AXIS], destination[P_AXIS], destination[V_AXIS], feedrate);
+              st_synchronize();
+              digipot_current(4, digipot_motor_current[4]);
+            }
+          else
+          {
+            plan_buffer_line(delta[X_AXIS], delta[Y_AXIS], delta[Z_AXIS], destination[P_AXIS], destination[V_AXIS], feedrate); 
+          }
+   
   }
 
 
