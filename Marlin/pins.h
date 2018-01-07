@@ -1293,8 +1293,8 @@
 #define HEATER_BED_PIN 3
 #define TEMP_BED_PIN 2 
 
-#define HEATER_0_PIN  9
-#define TEMP_0_PIN 0
+#define HEATER_0_PIN  44
+#define TEMP_0_PIN 3 //analog port and not pin
 
 #define HEATER_1_PIN 7
 #define TEMP_1_PIN 1

@@ -248,7 +248,7 @@ const short temptable_6[][2] PROGMEM = {
    {970*OVERSAMPLENR, 25},
    {978*OVERSAMPLENR, 22},
    {1008*OVERSAMPLENR, 3},
-   {1023*OVERSAMPLENR, 0}  //to allow internal 0°C
+   {1023*OVERSAMPLENR, 0}  //to allow internal 0ï¿½C
 };
 #endif
 
@@ -309,7 +309,7 @@ const short temptable_7[][2] PROGMEM = {
    {994*OVERSAMPLENR, 15},
    {1001*OVERSAMPLENR, 10},
    {1005*OVERSAMPLENR, 5},
-   {1023*OVERSAMPLENR, 0}  //to allow internal 0°C
+   {1023*OVERSAMPLENR, 0}  //to allow internal 0ï¿½C
 };
 #endif
 
@@ -456,6 +456,34 @@ const short temptable_55[][2] PROGMEM = {
    {1020*OVERSAMPLENR, 0}
 };
 #endif
+
+#if (THERMISTORHEATER_0 == 68) || (THERMISTORHEATER_1 == 68) || (THERMISTORHEATER_2 == 68) || (THERMISTORBED == 68)
+const short temptable_68[][2] PROGMEM = {
+	{ 1 * OVERSAMPLENR, 0 },
+	{ 54 * OVERSAMPLENR, 1 },
+	{ 107 * OVERSAMPLENR, 2 },
+	{ 160 * OVERSAMPLENR, 3 },
+	{ 213 * OVERSAMPLENR, 7 },
+	{ 266 * OVERSAMPLENR, 15 },
+	{ 319 * OVERSAMPLENR, 23 },
+	{ 372 * OVERSAMPLENR, 31 },
+	{ 425 * OVERSAMPLENR, 39 },
+	{ 478 * OVERSAMPLENR, 47 },
+	{ 531 * OVERSAMPLENR, 55 },
+	{ 584 * OVERSAMPLENR, 63 },
+	{ 637 * OVERSAMPLENR, 71 },
+	{ 690 * OVERSAMPLENR, 80 },
+	{ 743 * OVERSAMPLENR, 88 },
+	{ 796 * OVERSAMPLENR, 96 },
+	{ 849 * OVERSAMPLENR, 104 },
+	{ 902 * OVERSAMPLENR, 105 },
+	{ 955 * OVERSAMPLENR, 106 },
+	{ 1008 * OVERSAMPLENR, 107 }
+};
+#endif
+
+
+
 
 #define _TT_NAME(_N) temptable_ ## _N
 #define TT_NAME(_N) _TT_NAME(_N)
