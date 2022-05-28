@@ -279,7 +279,7 @@ const bool V_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 #define INVERT_X_DIR false  // V2.1: 0 MSt
 #define INVERT_Y_DIR false  // V2.1: 0
 #define INVERT_Z_DIR true   // V2.1: 1
-#define INVERT_P_DIR true	// V2.1: 1
+#define INVERT_P_DIR false	// V2.1: 1
 #define INVERT_V_DIR true   // V2.1: 1
 
 // ENDSTOP SETTINGS:
@@ -323,7 +323,7 @@ const bool V_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 //#define MANUAL_Y_HOME_DELTA 0//DELTA_HOME_ANGLE
 //#define MANUAL_Z_HOME_DELTA 0//DELTA_HOME_ANGLE
 #define MANUAL_P_HOME_POS 0
-#define MANUAL_V_HOME_POS -1.42 //V2.2: 0.1  //V2.2.0: 1.6 //V2.1: 4.4 //4.25
+#define MANUAL_V_HOME_POS -4.42 //V2.2: 0.1  //V2.2.0: 1.6 //V2.1: 4.4 //4.25
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 5 // The axis order in all axis related arrays is X, Y, Z, P, V
@@ -331,7 +331,7 @@ const bool V_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 
 // default settings Valve 
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {1, 1, 1, 1600, 2761} //533 when microstepping V2.2: {1, 1, 1, 1600, 533}
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {1, 1, 1, 2667, 2761} //533 when microstepping V2.2: {1, 1, 1, 1600, 533}
 #define DEFAULT_MAX_FEEDRATE          {32000, 32000, 32000, 4, 2}  // (mm/sec)
 #define DEFAULT_MAX_ACCELERATION      {3000, 3000, 3000, 3000, 6000}    // X, Y, P, V maximum start speed for accelerated moves.
 

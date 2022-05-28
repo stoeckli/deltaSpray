@@ -1,3 +1,7 @@
 {
-    "arduino.path": "C:\\Users\\marku\\OneDrive\\Electronics\\iMatrixSpray\\arduino-1.0.5-r2"
+    "arduino.path": "C:\\Program Files (x86)\\Arduino",
+    "arduino.useArduinoCli": false,
+    "arduino.analyzeOnOpen": false,
+    "arduino.analyzeOnSettingChange": false,
+    "arduino.commandPath": ""
 }
